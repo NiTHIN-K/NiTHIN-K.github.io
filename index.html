@@ -1,579 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nithin Kumar — Software Engineer</title>
-<meta name="description" content="Nithin Kumar — Software Engineer based in the Bay Area. Backend development, system design, microservices architecture.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nithin Kumar is a Bay Area full-stack software engineer focused on reliable, thoughtful product systems.">
+  <meta name="theme-color" content="#08111f">
+  <title>Nithin Kumar | Full-Stack Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #e8f0fa;
+      --muted: #9ba9bc;
+      --faint: #60708a;
+      --canvas: #08111f;
+      --surface: #0d1a2d;
+      --surface-raised: #12233b;
+      --line: rgba(172, 197, 228, .16);
+      --accent: #7ee4c2;
+      --accent-ink: #06251e;
+      --violet: #b6a5ff;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .24);
+    }
 
-  :root {
-    --teal: hsl(187, 74%, 32%);
-    --teal-light: hsl(187, 40%, 95%);
-    --teal-border: hsl(187, 40%, 88%);
-    --purple: hsl(270, 70%, 45%);
-    --dark: #1a1a2e;
-    --text: #2f2f2f;
-    --muted: #555;
-    --light-muted: #888;
-    --border: #e2e2e2;
-    --bg: #ffffff;
-    --card-bg: #fafafa;
-  }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% -8%, rgba(84, 137, 205, .22), transparent 32rem),
+        radial-gradient(circle at 90% 4%, rgba(126, 228, 194, .11), transparent 24rem),
+        var(--canvas);
+      font-family: Manrope, system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    .shell { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font: 500 12px/1.2 "DM Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
 
-  html { scroll-behavior: smooth; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid transparent;
+      background: rgba(8, 17, 31, .78);
+      backdrop-filter: blur(18px);
+    }
+    .site-header .shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+    }
+    .mark {
+      color: var(--ink);
+      font: 800 20px/1 Manrope, sans-serif;
+      letter-spacing: -.08em;
+      text-decoration: none;
+    }
+    .mark span { color: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 24px; }
+    .nav a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav a:hover { color: var(--accent); }
 
-  body {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--text);
-    background: var(--bg);
-    -webkit-font-smoothing: antialiased;
-  }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(270px, .55fr);
+      gap: 64px;
+      align-items: end;
+      padding: 114px 0 96px;
+    }
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font: 500 12px/1.2 "DM Mono", monospace;
+      letter-spacing: .04em;
+    }
+    .availability::before {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(126, 228, 194, .12);
+      content: "";
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 800;
+      letter-spacing: -.07em;
+      line-height: .98;
+    }
+    h1 em { color: var(--accent); font-style: normal; }
+    .hero-summary {
+      max-width: 610px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); border-color: rgba(126, 228, 194, .58); }
+    .button.primary { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+    .button.primary:hover { background: #a1f1d7; }
+    .hero-note {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(18, 35, 59, .9), rgba(13, 26, 45, .72));
+      box-shadow: var(--shadow);
+    }
+    .hero-note strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 14px; }
+    .hero-note p { margin: 0; color: var(--muted); font-size: 14px; }
 
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+    .section { padding: 88px 0; border-top: 1px solid var(--line); }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+    h2 { margin: 0; font-size: clamp(30px, 4vw, 44px); letter-spacing: -.055em; line-height: 1.1; }
+    .section-intro { max-width: 460px; margin: 0; color: var(--muted); font-size: 15px; }
 
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 12px 0;
-  }
+    .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .project {
+      grid-column: span 4;
+      display: flex;
+      flex-direction: column;
+      min-height: 255px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(13, 26, 45, .74);
+      text-decoration: none;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+    .project:first-child, .project:nth-child(2) { grid-column: span 6; }
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(126, 228, 194, .52);
+      background: var(--surface-raised);
+    }
+    .project-number { color: var(--faint); font: 500 12px/1 "DM Mono", monospace; }
+    .project h3 { margin: auto 0 8px; font-size: 24px; letter-spacing: -.045em; }
+    .project p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .tag {
+      color: var(--violet);
+      font: 500 11px/1 "DM Mono", monospace;
+      letter-spacing: .02em;
+    }
+    .tag:not(:last-child)::after { margin-left: 7px; color: var(--faint); content: "·"; }
 
-  nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    .experience-list { display: grid; gap: 0; }
+    .role {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 36px;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+    .role:last-child { border-bottom: 1px solid var(--line); }
+    .role-period { color: var(--faint); font: 500 12px/1.5 "DM Mono", monospace; }
+    .role h3 { margin: 0; font-size: 21px; letter-spacing: -.035em; }
+    .role-company { margin: 2px 0 13px; color: var(--accent); font-size: 14px; font-weight: 800; }
+    .role p { max-width: 760px; margin: 0; color: var(--muted); font-size: 15px; }
+    .role ul { display: grid; gap: 8px; max-width: 760px; margin: 16px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+    .role li::marker { color: var(--accent); }
 
-  nav .logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--dark);
-    text-decoration: none;
-  }
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-group { padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: rgba(13, 26, 45, .62); }
+    .skill-group h3 { margin: 0 0 12px; color: var(--accent); font: 500 12px/1.2 "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .skill-group p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
 
-  nav .logo span { color: var(--teal); }
+    .education {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(13, 26, 45, .62);
+    }
+    .education h3 { margin: 0; font-size: 19px; letter-spacing: -.035em; }
+    .education p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+    .education time { flex: 0 0 auto; color: var(--faint); font: 500 12px/1.5 "DM Mono", monospace; }
 
-  nav .nav-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
+    footer { padding: 32px 0 54px; color: var(--faint); font-size: 13px; }
+    footer .shell { display: flex; justify-content: space-between; gap: 20px; }
+    footer a { color: var(--accent); text-decoration: none; }
 
-  nav .nav-links a {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 32px, 1140px); }
+      .site-header .shell { min-height: 62px; }
+      .nav { gap: 14px; }
+      .nav a { font-size: 12px; }
+      .hero { grid-template-columns: 1fr; gap: 38px; padding: 78px 0 68px; }
+      .hero-note { max-width: 440px; }
+      .section { padding: 64px 0; }
+      .section-heading { display: block; }
+      .section-intro { margin-top: 14px; }
+      .project, .project:first-child, .project:nth-child(2) { grid-column: span 12; min-height: 210px; }
+      .role { grid-template-columns: 1fr; gap: 9px; }
+      .skills { grid-template-columns: 1fr; }
+      .education { display: block; }
+      .education time { display: block; margin-top: 12px; }
+      footer .shell { display: block; }
+      footer p + p { margin-top: 8px; }
+    }
 
-  nav .nav-links a:hover { color: var(--teal); }
-
-  /* HERO */
-  .hero {
-    padding: 80px 0 48px;
-  }
-
-  .hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--dark);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
-
-  .hero-gradient {
-    height: 4px;
-    width: 120px;
-    background: linear-gradient(to right, var(--teal), var(--purple));
-    border-radius: 2px;
-    margin-bottom: 20px;
-  }
-
-  .hero .tagline {
-    font-size: 20px;
-    color: var(--purple);
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .hero .location {
-    font-size: 16px;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .contact-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--teal);
-    text-decoration: none;
-    padding: 8px 16px;
-    border: 1px solid var(--teal-border);
-    border-radius: 6px;
-    background: var(--teal-light);
-    transition: all 0.2s;
-  }
-
-  .contact-links a:hover {
-    background: var(--teal);
-    color: #fff;
-    border-color: var(--teal);
-  }
-
-  .contact-links .phone-link {
-    color: var(--muted);
-    background: transparent;
-    border-color: var(--border);
-  }
-
-  .contact-links .phone-link:hover {
-    color: var(--dark);
-    border-color: var(--dark);
-    background: #f5f5f5;
-  }
-
-  .contact-links .icon {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-  }
-
-  /* SECTIONS */
-  .section {
-    padding: 48px 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--teal);
-    margin-bottom: 28px;
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .skill-tag {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--teal);
-    background: var(--teal-light);
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid var(--teal-border);
-    transition: all 0.2s;
-  }
-
-  .skill-tag:hover {
-    background: var(--teal);
-    color: #fff;
-    border-color: var(--teal);
-  }
-
-  .skill-category {
-    font-weight: 600;
-    color: var(--dark);
-  }
-
-  .skill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .skill-row-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--dark);
-    min-width: 110px;
-  }
-
-  /* EXPERIENCE */
-  .job {
-    margin-bottom: 36px;
-    padding: 24px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    transition: box-shadow 0.2s;
-  }
-
-  .job:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  }
-
-  .job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 4px;
-    flex-wrap: wrap;
-  }
-
-  .job-company {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--purple);
-  }
-
-  .job-period {
-    font-size: 14px;
-    color: var(--light-muted);
-    white-space: nowrap;
-  }
-
-  .job-role {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .job-location {
-    font-size: 14px;
-    color: var(--light-muted);
-    margin-bottom: 12px;
-  }
-
-  .job-desc {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 12px;
-    line-height: 1.6;
-  }
-
-  .job ul {
-    padding-left: 20px;
-  }
-
-  .job li {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .job li strong {
-    font-weight: 600;
-    color: var(--dark);
-  }
-
-  /* PROJECTS */
-  .project {
-    margin-bottom: 28px;
-    padding: 24px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-
-  .project-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--purple);
-    margin-bottom: 4px;
-  }
-
-  .project-badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--teal);
-    background: var(--teal-light);
-    padding: 2px 10px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-  }
-
-  .project-desc {
-    font-size: 15px;
-    color: var(--text);
-    line-height: 1.7;
-  }
-
-  /* EDUCATION */
-  .edu-item {
-    padding: 20px 24px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-
-  .edu-degree {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--dark);
-  }
-
-  .edu-school {
-    color: var(--purple);
-    font-weight: 500;
-  }
-
-  .edu-meta {
-    font-size: 14px;
-    color: var(--light-muted);
-    margin-top: 4px;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 40px 0;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-
-  footer p {
-    font-size: 14px;
-    color: var(--light-muted);
-  }
-
-  footer a {
-    color: var(--teal);
-    text-decoration: none;
-  }
-
-  /* PRINT */
-  @media print {
-    nav { display: none; }
-    .hero { padding-top: 0; }
-    .job, .project { box-shadow: none; border: 1px solid var(--border); }
-    body { font-size: 11px; }
-    .hero h1 { font-size: 28px; }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .hero h1 { font-size: 36px; }
-    .hero .tagline { font-size: 18px; }
-    nav .nav-links { gap: 16px; }
-    nav .nav-links a { font-size: 13px; }
-    .contact-links { gap: 10px; }
-    .job { padding: 16px; }
-    .project { padding: 16px; }
-  }
-</style>
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="container">
-    <a href="#" class="logo">nk<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-    </ul>
-  </div>
-</nav>
-
-<main class="container">
-  <section class="hero" id="about">
-    <h1>Nithin Kumar</h1>
-    <div class="hero-gradient"></div>
-    <p class="tagline">Software Engineer</p>
-    <p class="location">Bay Area, CA</p>
-    <div class="contact-links">
-      <a href="mailto:nithinkumarSWE@gmail.com">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Email
-      </a>
-      <a href="https://www.linkedin.com/in/kumar-nithin" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/NiTHIN-K" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        GitHub
-      </a>
-
+  <header class="site-header">
+    <div class="shell">
+      <a class="mark" href="#top" aria-label="Nithin Kumar home">nk<span>.</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section class="section" id="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="skill-row">
-      <span class="skill-row-label">Engineering:</span>
-      <span class="skill-tag">Backend Development</span>
-      <span class="skill-tag">System Design</span>
-      <span class="skill-tag">Microservices Architecture</span>
-      <span class="skill-tag">UI/UX Design</span>
-      <span class="skill-tag">Unit & Integration Testing</span>
-    </div>
-    <div class="skill-row">
-      <span class="skill-row-label">Toolkit:</span>
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">Java / Spring Boot</span>
-      <span class="skill-tag">TypeScript / React / Node</span>
-      <span class="skill-tag">Mockito</span>
-      <span class="skill-tag">NoSQL</span>
-      <span class="skill-tag">AWS</span>
-      <span class="skill-tag">Docker</span>
-      <span class="skill-tag">OpenCode</span>
-    </div>
-  </section>
-
-  <section class="section" id="experience">
-    <h2 class="section-title">Professional Experience</h2>
-
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">LookWear</span>
-        <span class="job-period">Oct 2025 – Present</span>
+  <main id="top">
+    <section class="hero shell" aria-labelledby="intro-heading">
+      <div>
+        <p class="availability">Bay Area · Full-Stack Software Engineer</p>
+        <h1 id="intro-heading">I build <em>dependable</em> software people can use with confidence.</h1>
+        <p class="hero-summary">I work across product interfaces, backend services, integrations, and delivery systems. My focus is turning complex workflows into clear, durable experiences.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:nithinkumarSWE@gmail.com">Start a conversation</a>
+          <a class="button" href="https://github.com/NiTHIN-K" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="button" href="https://www.linkedin.com/in/kumar-nithin" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
       </div>
-      <div class="job-role">Lead Developer</div>
-      <div class="job-location">Bay Area, CA</div>
-      <p class="job-desc">Sole developer of an AI-enhanced fashion platform bridging personal stylists and clients. Full ownership of end-to-end product architecture and feature deployment.</p>
-      <ul>
-        <li>Engineered a RAG pipeline using Qdrant vector database to anchor recommendations to real-time product dataset; eliminated LLM hallucinations and automated error-correction loops, <strong>slashing API compute costs by 50%</strong>.</li>
-        <li>Own product architecture, feature development, and deployment across the full stack.</li>
-      </ul>
-    </div>
+      <aside class="hero-note" aria-label="Current focus">
+        <strong>Current focus</strong>
+        <p>Full-stack product engineering, resilient backend services, and interfaces that make complicated work feel straightforward.</p>
+      </aside>
+    </section>
 
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">State of California, EDD</span>
-        <span class="job-period">Oct 2024 – Present</span>
+    <section class="section" id="work" aria-labelledby="work-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2 id="work-heading">Systems from interface to infrastructure.</h2>
+          </div>
+          <p class="section-intro">A selection ordered around the work I want to do more of: useful full-stack products, well-bounded services, and careful state management.</p>
+        </div>
+        <div class="project-grid">
+          <a class="project" href="https://github.com/NiTHIN-K/door-id" target="_blank" rel="noreferrer">
+            <span class="project-number">01 / SERVICE DESIGN</span>
+            <h3>Door ID</h3>
+            <p>A Spring Boot address-verification service that converts verified location details into a compact parcel profile with environment-based configuration and explicit failure states.</p>
+            <div class="project-tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">HTTP APIs</span></div>
+          </a>
+          <a class="project" href="https://github.com/NiTHIN-K/Paranoia" target="_blank" rel="noreferrer">
+            <span class="project-number">02 / REAL-TIME PRODUCT</span>
+            <h3>Paranoia</h3>
+            <p>A real-time messaging application built around private rooms, live presence, and a responsive browser experience.</p>
+            <div class="project-tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Socket.IO</span></div>
+          </a>
+          <a class="project" href="https://github.com/NiTHIN-K/Attendance-Manager" target="_blank" rel="noreferrer">
+            <span class="project-number">03 / WORKFLOW TOOL</span>
+            <h3>Attendance Manager</h3>
+            <p>A polished attendance and payment-balance tracker for class operations, including roster management and data export.</p>
+            <div class="project-tags"><span class="tag">React</span><span class="tag">Browser Storage</span><span class="tag">CSV</span></div>
+          </a>
+          <a class="project" href="https://github.com/NiTHIN-K/prophet-directional-trader" target="_blank" rel="noreferrer">
+            <span class="project-number">04 / STATEFUL BACKEND</span>
+            <h3>Prophet Directional Trader</h3>
+            <p>A paper-only prediction-market research system with durable journals, scheduled decision cycles, budget limits, and offline verification.</p>
+            <div class="project-tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">System Design</span></div>
+          </a>
+          <a class="project" href="https://github.com/NiTHIN-K/dCasino" target="_blank" rel="noreferrer">
+            <span class="project-number">05 / CONTRACT INTERFACE</span>
+            <h3>dCasino</h3>
+            <p>A learning demonstration that connects a React wallet interface to an experimental Solidity lottery contract.</p>
+            <div class="project-tags"><span class="tag">React</span><span class="tag">Solidity</span><span class="tag">Ethers</span></div>
+          </a>
+        </div>
       </div>
-      <div class="job-role">Software Engineer</div>
-      <div class="job-location">Sacramento, CA</div>
-      <ul>
-        <li>Build and support DB2-backed batch processing workflows in a highly regulated state environment, with a focus on job reliability, production fixes, and uptime.</li>
-        <li>Diagnose batch job failures, implement fixes, and perform unit testing for production workflows.</li>
-        <li>Support regulated production systems where reliability, auditability, and uptime are critical.</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">Orchestro.ai</span>
-        <span class="job-period">Oct 2023 – Apr 2024</span>
+    <section class="section" id="experience" aria-labelledby="experience-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Experience</p>
+            <h2 id="experience-heading">Product-minded engineering with operating depth.</h2>
+          </div>
+        </div>
+        <div class="experience-list">
+          <article class="role">
+            <time class="role-period" datetime="2025-10">Oct 2025 — Present</time>
+            <div>
+              <h3>Lead Developer</h3>
+              <p class="role-company">LookWear · Bay Area, CA</p>
+              <p>Own full-stack architecture, product development, and deployment for a fashion platform that connects personal stylists with clients.</p>
+              <ul>
+                <li>Built a retrieval-backed catalog workflow that connects recommendations to live product data.</li>
+                <li>Reduced external-compute cost through tighter data flow and error-correction loops.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="role">
+            <time class="role-period" datetime="2024-10">Oct 2024 — Present</time>
+            <div>
+              <h3>Software Engineer</h3>
+              <p class="role-company">State of California, EDD · Sacramento, CA</p>
+              <p>Build and support DB2-backed batch workflows in a regulated environment, with an emphasis on reliability, production fixes, and uptime.</p>
+            </div>
+          </article>
+          <article class="role">
+            <time class="role-period">Oct 2023 — Apr 2024</time>
+            <div>
+              <h3>Founding Engineer</h3>
+              <p class="role-company">Orchestro · Bay Area, CA</p>
+              <p>Led a three-person engineering team building a React and Spring Boot portal used by more than 25 client companies.</p>
+              <ul>
+                <li>Secured Spring Boot REST endpoints with Okta OAuth2 for sensitive carrier data.</li>
+                <li>Integrated React with OIDC and JWT validation for account-level sign-in flows.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="role">
+            <time class="role-period">Jun 2022 — Dec 2022</time>
+            <div>
+              <h3>Backend Software Developer</h3>
+              <p class="role-company">OfferUp · Bay Area, CA</p>
+              <p>Built schemas and APIs for a direct-sold advertising model, improved search categorization, and resolved a high-CPU server failure.</p>
+            </div>
+          </article>
+          <article class="role">
+            <time class="role-period">2019 — 2020</time>
+            <div>
+              <h3>Software Developer Intern</h3>
+              <p class="role-company">CDK Global · Kaiser Permanente · Bay Area, CA</p>
+              <p>Worked on container migration, cloud monitoring, infrastructure indexing, backend APIs, and quality automation.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="job-role">Founding Engineer</div>
-      <div class="job-location">Bay Area, CA</div>
-      <p class="job-desc">Led a team of 3 engineers to build a web portal used by 25+ client companies. Built on React and Spring Boot.</p>
-      <ul>
-        <li>Secured all Spring Boot REST API endpoints using Okta (OAuth2), ensuring safe transfer of sensitive data for 5+ major carriers including FedEx and UPS.</li>
-        <li>Integrated React frontend with Okta OIDC/JWT validation for SSO, enabling multi-provider login per account.</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">OfferUp</span>
-        <span class="job-period">Jun 2022 – Dec 2022</span>
+    <section class="section" id="skills" aria-labelledby="skills-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Technical range</p>
+            <h2 id="skills-heading">Comfortable across the delivery path.</h2>
+          </div>
+        </div>
+        <div class="skills">
+          <article class="skill-group">
+            <h3>Backend</h3>
+            <p>Python, Java, Spring Boot, Node.js, SQL, DB2, REST APIs, authentication, batch processing, and service design.</p>
+          </article>
+          <article class="skill-group">
+            <h3>Frontend</h3>
+            <p>React, TypeScript, responsive interfaces, form flows, browser storage, and accessible interaction patterns.</p>
+          </article>
+          <article class="skill-group">
+            <h3>Delivery</h3>
+            <p>AWS, Docker, CI workflows, automated tests, production support, observability, and practical system design.</p>
+          </article>
+        </div>
       </div>
-      <div class="job-role">Software Developer: Backend</div>
-      <div class="job-location">Bay Area, CA</div>
-      <ul>
-        <li>Spearheaded schemas and APIs for "Direct-Sold" ads — a proprietary ad model generating <strong>2x+ the revenue</strong> of Google-sold platform ads.</li>
-        <li>Collaborated with Data Science to implement an ML model for search query categorization, resulting in <strong>20% increase in accurate search results</strong>.</li>
-        <li>Resolved a server error causing high CPU usage, achieving a <strong>25% decrease in CPU utilization</strong> and preventing potential downtime.</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">CDK Global</span>
-        <span class="job-period">Jun 2020 – Sep 2020</span>
+    <section class="section" aria-labelledby="education-heading">
+      <div class="shell">
+        <p class="eyebrow">Education</p>
+        <div class="education">
+          <div>
+            <h2 id="education-heading">B.S. Computer Science</h2>
+            <p>San José State University · San José, CA</p>
+          </div>
+          <time datetime="2021">2021</time>
+        </div>
       </div>
-      <div class="job-role">Software Developer Intern</div>
-      <div class="job-location">San Jose, CA</div>
-      <ul>
-        <li>Migrated backend from on-prem Apache to containerized ECS on AWS.</li>
-        <li>Monitored CloudWatch metrics; scaled instances during high CPU load to maintain <strong>100% uptime</strong> during transition.</li>
-        <li>Configured AWS Security Groups for secure cloud-to-database connectivity.</li>
-      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>© 2026 Nithin Kumar</p>
+      <p><a href="mailto:nithinkumarSWE@gmail.com">nithinkumarSWE@gmail.com</a></p>
     </div>
-
-    <div class="job">
-      <div class="job-header">
-        <span class="job-company">Kaiser Permanente</span>
-        <span class="job-period">Jun 2019 – Sep 2019</span>
-      </div>
-      <div class="job-role">Software Developer Intern</div>
-      <div class="job-location">Bay Area, CA</div>
-      <ul>
-        <li>Built system to query/index thousands of infrastructure servers and VMs; updated MySQL status and automated via Jenkins dashboard for server quality queries.</li>
-        <li>Created Python Flask API with drill-down web GUI, reducing manual data analysis time by <strong>40%</strong>.</li>
-        <li>Automated certificate verification scripts, saving <strong>10 hours/week</strong> of QA workload.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" id="projects">
-    <h2 class="section-title">Projects & Awards</h2>
-
-    <div class="project">
-      <div class="project-title">BlindSpot</div>
-      <span class="project-badge">1st Prize — Microsoft API Challenge</span>
-      <p class="project-desc">Cal Hacks 4.0 winning "seeing-eye" app using Computer Vision & Azure. Collaborated with healthcare providers for market fit.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-title">Class Attendance Manager</div>
-      <p class="project-desc">Student attendance and payment balance tracker for a local dance studio built with React and Firebase.</p>
-    </div>
-  </section>
-
-  <section class="section" id="education">
-    <h2 class="section-title">Education</h2>
-    <div class="edu-item">
-      <div class="edu-degree">B.S. Computer Science — <span class="edu-school">San Jose State University</span></div>
-      <div class="edu-meta">2021 | San Jose, CA</div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <p>&copy; Nithin Kumar &middot; <a href="https://github.com/NiTHIN-K">github.com/NiTHIN-K</a></p>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
